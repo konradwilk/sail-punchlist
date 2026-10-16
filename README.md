@@ -1,90 +1,80 @@
 # Sail Punchlist
 
-An Expo / React Native iOS and Android app for the supplied Pre-Sail and
-Post-Sail checklists. Uses the approved grouped layout with all groups open.
-Each item offers ✓ Done or ✕ Issue; selecting Issue reveals an optional note.
-Issues do not block completion. Every item must be reviewed and fuel and engine
-hours entered before saving. Saving switches to the other phase; the phase tabs
-also allow manual changes while retaining each draft.
+Two independent native apps for Pre-Sail and Post-Sail checklists:
 
-History includes the completion date/time, fuel percentage, engine hours,
-account email, and every issue/comment. History is shared locally across accounts
-on the same installation. Signing out does not delete records or drafts.
+- **iOS:** Objective-C, UIKit, and Foundation. iOS 16 or later.
+- **Android:** Kotlin and Android platform widgets. Android 8 or later.
 
-## Run
+No React Native, Expo, JavaScript runtime, Node, CocoaPods, backend, or account.
+The apps use only platform APIs and language standard libraries. `checklists.json` is static
+content packaged by each platform's build.
 
-Requires Node 20.19+ and pnpm.
+## Use
 
-```sh
-pnpm install
-pnpm start
-pnpm web
-```
+Review every item with green Done or red Issue controls. Issues can have an optional note and do not
+block completion. Drag directly on the 0–100% fuel dial and enter engine hours, then complete the
+checklist to save a record and switch phases. Each phase has its own saved draft.
+Engine hours accept decimals and cannot go below the last completed reading.
+The next suggested reading is the last reading + 1.
 
-Web is a layout preview: it uses browser local storage and JSON downloads.
-Native builds use a real JSON file in the application's Documents directory.
-Native account sign-in is required to save a completed checklist. Drafts can be
-edited and saved before sign-in. Web does not simulate an authenticated account.
+History shows completion time, fuel, engine hours, and issue notes. Export JSON or CSV
+from History to save a copy. CSV export contains one row per completed checklist
+item, including its status and note, together with the completion time, phase,
+fuel percentage, and engine hours. Drafts and records live in a local JSON file using
+atomic writes. An unreadable file stops editing instead of silently resetting it.
+Uninstalling the app can delete its local records.
 
-```sh
-pnpm typecheck
-pnpm test
-pnpm exec expo export --platform all
-```
+This is a fresh implementation with a new local file format. There is no import
+or migration from the previous application.
 
-## iOS / Apple sign-in
+## iOS
 
-Use Xcode and CocoaPods for a local native build. If the selected developer
-directory points to command-line tools, use:
+Open `ios/SailPunchlist.xcodeproj` in Xcode. Select the SailPunchlist scheme,
+choose your device or simulator, and run. For a physical device, select your
+signing team under Signing & Capabilities. Both Debug and Release are standalone.
+
+Command-line simulator build:
 
 ```sh
-DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer pnpm build:ios
+DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer \
+  xcodebuild -project ios/SailPunchlist.xcodeproj -scheme SailPunchlist \
+  -sdk iphonesimulator -derivedDataPath .build/ios CODE_SIGNING_ALLOWED=NO build
 ```
 
-The app config enables Sign in with Apple and includes its config plugin.
-For device distribution, use your own bundle identifier, Apple Developer team,
-and provisioning profile with the Sign in with Apple capability. EAS development
-builds are also supported by eas.json; connect your Expo project before using EAS.
-No developer credentials are included in the repository.
+## Android
 
-Apple may provide a private relay address. Its initial email is cached in Secure
-Store because Apple usually only supplies it on first authorization. After a
-reinstall, if Apple provides no email and the cache is missing, revoke this app's
-Apple authorization in Settings and authorize again. No fabricated email is used.
+Open `android/` in Android Studio and run the app on a device or emulator.
+Install SDK Platform 36 and use JDK 17. The Gradle wrapper downloads the build
+tools on its first run. Set your SDK path in Android Studio, `ANDROID_HOME`, or
+`android/local.properties` (`sdk.dir=/your/sdk/path`).
 
-## Android / Google sign-in
+```sh
+cd android
+./gradlew :app:assembleDebug
+```
 
-Use an Android SDK/emulator or a physical device and a native development build;
-the Google sign-in native module is not available in Expo Go.
+APK: `android/app/build/outputs/apk/debug/app-debug.apk`.
+Release distribution needs your own signing configuration.
 
-1. Set your final Android package in app.json (currently com.sailpunchlist.app).
-2. Configure a Google Cloud OAuth consent screen and test users as needed.
-3. Create an Android OAuth client for that package and each signing certificate's
-   SHA-1 (development, release, and Play App Signing as applicable).
-4. Create a Web application OAuth client in the same Google project. Copy
-   .env.example to .env and set EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID to that client ID.
-   This is a public client identifier, not a client secret.
-5. Run pnpm build:android with Android SDK tools installed. For EAS, set the same
-   environment variable in the build environment and rebuild after config changes.
+## Clean build files
 
-Sign-in associates the native provider's email with local records; there is no
-backend or cloud sync, and no access/refresh tokens are written to the JSON file.
+Run `./scripts/clean-build.sh` to remove generated iOS and Android build outputs,
+test results, and project-local Gradle caches. Source files, signing settings,
+and saved data on devices and simulators are left untouched. The next build
+recreates the generated files.
 
-## Storage and backup
+## Verification
 
-Native file: Documents/sail-punchlist.json. Writes are serialized and retain
-sail-punchlist.backup.json. An unreadable main file is preserved and the backup
-is loaded when valid; if neither is readable, editing stays disabled to avoid
-silently replacing records. Export JSON from History or Account for backup.
-iOS Files sharing is enabled. Uninstalling may remove local records.
+On macOS, run `./tests/run-ios.sh` to exercise the actual Objective-C store:
+completion validation, draft persistence, issue history, decimal readings,
+failed-write rollback, and unreadable-file protection.
 
-Engine hours allow decimals and default to the last completed reading + 1 for
-the next checklist. In-progress edited readings are preserved between launches.
-The last recorded reading is the minimum accepted completion value.
+In Xcode, choose Product → Test to run the fuel-dial regression tests against
+the real UIKit control, including dragging from 0% to 75% and across the dial.
 
-## Licenses
+See `tests/README.md` for build checks and device checks.
 
-Application code: BSD-3-Clause (LICENSE). Original gauge artwork:
-CC0-1.0 (licenses/CC0-1.0.txt). See 3RDPARTYLICENSE.txt for its picture and source
-references. Third-party packages retain their own licenses. The lockfile pins
-the installed dependency versions.
+## License
+
+Application code: BSD-3-Clause (`LICENSE`). Gradle wrapper: Apache-2.0;
+its license is embedded in `android/gradle/wrapper/gradle-wrapper.jar`.

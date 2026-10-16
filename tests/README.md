@@ -1,26 +1,36 @@
 # Verification
 
-`pnpm test` checks the completion cycle, optional issue comments, immutable
-record values, validation, fractional engine readings, JSON round trips, and
-independent phase drafts. Storage tests also cover concurrent writes, disk-write
-failures, backup recovery, and preserving corrupt files. `pnpm typecheck` checks all application screens.
+`./tests/run-ios.sh` compiles and runs the actual Objective-C store on macOS.
+It covers required answers, optional issue notes, CSV headers and escaping of commas, quotes, and newlines, fuel bounds, invalid engine
+readings, decimal readings, monotonic engine readings, draft persistence,
+automatic suggested hours, history snapshots, failed-save rollback, and refusing
+to overwrite unreadable data. It creates and removes its own temporary data.
 
-Browser smoke check (web preview): select an Issue, enter a note, fuel, and
-engine hours; reload and verify all four remain. Native sign-in must be tested
-on devices with the developer account configuration described in README.md.
+In Xcode, Product → Test runs `SailPunchlistTests`. These tests invoke the
+UIKit touch-tracking callbacks on the real fuel control, check that dragging
+0% → 75% → 100% emits updated values, check dragging across and back, verify
+that the gauge renders a changed reading, and check that page scrolling does
+not cancel tracking. They do not simulate a physical finger on a device.
 
-Verified during implementation:
-- TypeScript: passed.
-- Eleven model/storage tests: passed.
-- Expo production bundles: iOS, Android, and web passed.
-- Expo native project generation: iOS and Android passed.
-- Browser preview: issue note, fuel, and engine reading preserved after reload.
+Verified during native implementation:
 
-The storage tests exercise the real storage module with an in-memory adapter
-for the native filesystem APIs, including simulated disk errors and interrupted
-writes. They do not replace a physical-device test of filesystem behavior.
-- Native iOS Release simulator build: BUILD SUCCEEDED with Xcode 26.6.
-- Installed and launched com.sailpunchlist.app on the iPhone 17 Pro simulator.
-- Native visual inspection was blocked by missing Computer Use permission.
-- Real Apple/Google authorization and Android native compilation remain untested;
-  developer OAuth/provisioning configuration and an Android SDK/device are needed.
+- Objective-C store tests passed.
+- Four UIKit fuel-dial regression tests passed on the iPhone 17 Pro simulator after fixing the tracking callback names.
+- iOS Debug and Release simulator builds succeeded with Xcode 26.6.
+- App installed and launched on the iPhone 17 Pro / iOS 26.5 simulator.
+- Simulator screenshot inspected for initial layout.
+- Android debug APK built successfully with JDK 17 and SDK Platform 36.
+- Green/red checklist controls and the 0–100% fuel dial compile on both platforms; interactive visual verification of this update was blocked by Simulator control permission.
+- Android lint completed with zero errors; English text and build-tool update warnings remain.
+
+The Android app has not been run on a device or emulator. Signing and physical
+device distribution are not configured.
+
+Before shipping, check on each platform:
+
+1. Mark an Issue, enter a note and readings, then restart. The draft should remain.
+2. Try completing an unreviewed checklist and invalid readings; completion should be refused.
+3. Complete a checklist with an issue. Verify the opposite phase opens and History includes the issue and readings.
+4. Export JSON and CSV and open both files. Check that CSV contains completed records, including notes with commas, quotes, and line breaks.
+5. Drag the fuel dial to 0%, 50%, and 100%; check the dial and saved reading after restart. Check that dragging the dial does not scroll the page, that scrolling outside it works, and that screen reader adjustment works. Check green Done and red Issue states, including switching between them. Check that the active Pre-Sail/Post-Sail tab is green.
+6. Check keyboard access to the bottom fields, rotation, large text, and screen reader labels.

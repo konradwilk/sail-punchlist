@@ -1,10 +1,7 @@
-node_modules/
-.expo/
-dist/
-*.tsbuildinfo
-.env
-.env.local
-ios/
-android/
-.env.*
-!.env.example
+.DS_Store
+.build/
+android/.gradle/
+android/local.properties
+android/**/build/
+ios/**/xcuserdata/
+*.xcuserstate

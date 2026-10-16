@@ -1,0 +1,172 @@
+{
+  "pre": [
+    {
+      "title": "Preparation & Safety",
+      "items": [
+        {
+          "id": "pre-0",
+          "label": "Provisions, fuel, water, and gas – make up food for the journey"
+        },
+        {
+          "id": "pre-1",
+          "label": "Weather forecast"
+        },
+        {
+          "id": "pre-2",
+          "label": "Update OpenGRIB"
+        },
+        {
+          "id": "pre-7",
+          "label": "Sunscreen, sailing gloves, safey gear, PFD, flashlight, fire extinguisher"
+        },
+        {
+          "id": "pre-10",
+          "label": "Clear the log book, Start new entry"
+        }
+      ]
+    },
+    {
+      "title": "Cabin & Deck",
+      "items": [
+        {
+          "id": "pre-4",
+          "label": "Swim ladder stowed"
+        },
+        {
+          "id": "pre-8",
+          "label": "Galley - stowed, hatches, portlights closed"
+        },
+        {
+          "id": "pre-9",
+          "label": "Cabin - stowed, hatches, portlights"
+        },
+        {
+          "id": "pre-11",
+          "label": "Dingy secured"
+        },
+        {
+          "id": "pre-12",
+          "label": "Winch handle on deck"
+        },
+        {
+          "id": "pre-20",
+          "label": "Mainsail cover off, main halyard on the head of the mainsail, and secure. Does it need a reef?"
+        },
+        {
+          "id": "pre-21",
+          "label": "All lines at the end have a figure eight"
+        },
+        {
+          "id": "pre-22",
+          "label": "Once clear, stow fenders"
+        }
+      ]
+    },
+    {
+      "title": "Engine & Instruments",
+      "items": [
+        {
+          "id": "pre-5",
+          "label": "Inspect seacocks and turn on the one by engine on"
+        },
+        {
+          "id": "pre-6",
+          "label": "Bilge check - clean, dry"
+        },
+        {
+          "id": "pre-13",
+          "label": "Check battery status and Solar Inverter"
+        },
+        {
+          "id": "pre-14",
+          "label": "Engine check - water filters, oil levels, belts"
+        },
+        {
+          "id": "pre-15",
+          "label": "Fuel levels and record it in the ships log (incl jerry cans)"
+        },
+        {
+          "id": "pre-16",
+          "label": "Turn engine on - check water out of the exhaust"
+        },
+        {
+          "id": "pre-17",
+          "label": "Record engine hours"
+        },
+        {
+          "id": "pre-3",
+          "label": "Navigation - all charts and apps on"
+        },
+        {
+          "id": "pre-18",
+          "label": "Instruments on and covers off"
+        },
+        {
+          "id": "pre-19",
+          "label": "VHF on, CH 16, check squelch / volume"
+        }
+      ]
+    }
+  ],
+  "post": [
+    {
+      "title": "Final Log & Position",
+      "items": [
+        {
+          "id": "post-0",
+          "label": "Take a final log (enter in fuel and battery level)"
+        },
+        {
+          "id": "post-1",
+          "label": "Take bearings (if at anchor)"
+        },
+        {
+          "id": "post-10",
+          "label": "SailTies: Stop the journey"
+        }
+      ]
+    },
+    {
+      "title": "Engine & Power",
+      "items": [
+        {
+          "id": "post-2",
+          "label": "Engine off"
+        },
+        {
+          "id": "post-3",
+          "label": "Turn Battery to Off"
+        },
+        {
+          "id": "post-8",
+          "label": "Seacock for water intake closed"
+        }
+      ]
+    },
+    {
+      "title": "Cabin & Deck",
+      "items": [
+        {
+          "id": "post-4",
+          "label": "All lines coiled and stowed"
+        },
+        {
+          "id": "post-5",
+          "label": "Mainsail cover on and halyard secured"
+        },
+        {
+          "id": "post-6",
+          "label": "Wheel locked"
+        },
+        {
+          "id": "post-7",
+          "label": "Instrument covers on"
+        },
+        {
+          "id": "post-9",
+          "label": "Potholes are closed"
+        }
+      ]
+    }
+  ]
+}

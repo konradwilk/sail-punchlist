@@ -1,26 +1,10 @@
-Sail Punchlist — artwork and third-party license references
-=========================================================
+Sail Punchlist
 
-Fuel gauge picture
-------------------
-Picture: assets/fuel-gauge.svg (path relative to this file)
-Dynamic application artwork: src/FuelGauge.tsx
-Origin: Original artwork created for Sail Punchlist; not downloaded from
-an external image provider. The SVG is a static 70% preview of the dynamic
-fuel gauge drawn by the application component.
-License: CC0 1.0 Universal (SPDX: CC0-1.0)
-License summary: https://creativecommons.org/publicdomain/zero/1.0/
-Full legal text: https://creativecommons.org/publicdomain/zero/1.0/legalcode
-Local full legal text: licenses/CC0-1.0.txt
+Application source: BSD-3-Clause (see LICENSE).
 
-The original fuel gauge artwork is dedicated to the public domain under
-CC0 1.0 Universal. It is listed here for traceability even though it is
-project-original artwork rather than a third-party image.
+The Android Gradle wrapper scripts and JAR are distributed under Apache-2.0.
+The wrapper JAR includes the full license at META-INF/LICENSE.
+Gradle: https://gradle.org/
 
-Scope
------
-The application code is licensed under BSD-3-Clause; see LICENSE.
-The fuel gauge artwork retains its separate CC0-1.0 dedication.
-Third-party dependencies retain their own licenses and copyright notices;
-they are not relicensed by this project. This file documents the
-fuel gauge and is not a complete inventory of dependency licenses.
+The applications use only their platform SDKs and Kotlin's standard library.
+Build tools and platform components retain their respective licenses.

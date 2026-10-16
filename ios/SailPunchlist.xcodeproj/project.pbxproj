@@ -1,0 +1,366 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1613112CC2ADB70542F5CD6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40662385045BEC16072152C4 /* Foundation.framework */; };
+		33CB724180988FF5E47C2502 /* FuelGaugeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7D376289C3D0DDE757E551 /* FuelGaugeTests.m */; };
+		8B4F90397EFEB7D6B1B0D81F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76189A5AC12D17099BD5073E /* main.m */; };
+		AF44B136F0C039E1F18896B4 /* checklists.json in Resources */ = {isa = PBXBuildFile; fileRef = A99BDB9E6680A7198E34D632 /* checklists.json */; };
+		E3BFAC23740011E87FFBDDA6 /* SailStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C9192DDB9538466DDAED3E /* SailStore.m */; };
+		F0C3048B9C4C204F3473B058 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3685E330EC5277A9DD5661C6 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		588F01C2136A1D3B0C9F5BED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 98F54143AB4E86B28C3AFEE0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0E8A3AD980EC179856012B7E;
+			remoteInfo = SailPunchlist;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		21409CAF8F7FCBE161C337D5 /* SailStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SailStore.h; sourceTree = "<group>"; };
+		3685E330EC5277A9DD5661C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		38A007151ABE87CC01A5B6E9 /* SailPunchlist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = SailPunchlist.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		40662385045BEC16072152C4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		43C9192DDB9538466DDAED3E /* SailStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SailStore.m; sourceTree = "<group>"; };
+		76189A5AC12D17099BD5073E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7B594B6DB375E1BF3F23CDD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A99BDB9E6680A7198E34D632 /* checklists.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ../checklists.json; sourceTree = SOURCE_ROOT; };
+		B1B090E40DE028FCE3BECF85 /* SailPunchlistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SailPunchlistTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC7D376289C3D0DDE757E551 /* FuelGaugeTests.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = FuelGaugeTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0F5A83550E78895DBF374A9C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1613112CC2ADB70542F5CD6F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7561BFB015D8F536760CB671 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3C3B0F03DC089F93B8457928 /* SailPunchlist */ = {
+			isa = PBXGroup;
+			children = (
+				76189A5AC12D17099BD5073E /* main.m */,
+				43C9192DDB9538466DDAED3E /* SailStore.m */,
+				21409CAF8F7FCBE161C337D5 /* SailStore.h */,
+				7B594B6DB375E1BF3F23CDD6 /* Info.plist */,
+				3685E330EC5277A9DD5661C6 /* Assets.xcassets */,
+			);
+			path = SailPunchlist;
+			sourceTree = "<group>";
+		};
+		61D800AEB5235070630FB974 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8DD686F02E6BEAB7EB5BFFD7 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8DD686F02E6BEAB7EB5BFFD7 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				40662385045BEC16072152C4 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		C861049A62E9E71E1C064621 /* SailPunchlistTests */ = {
+			isa = PBXGroup;
+			children = (
+				DC7D376289C3D0DDE757E551 /* FuelGaugeTests.m */,
+			);
+			name = SailPunchlistTests;
+			path = SailPunchlistTests;
+			sourceTree = "<group>";
+		};
+		DC76E9F0C0006E8F919E0C51 = {
+			isa = PBXGroup;
+			children = (
+				3C3B0F03DC089F93B8457928 /* SailPunchlist */,
+				A99BDB9E6680A7198E34D632 /* checklists.json */,
+				FBDC4F23F93125BBEEAE800C /* Products */,
+				61D800AEB5235070630FB974 /* Frameworks */,
+				C861049A62E9E71E1C064621 /* SailPunchlistTests */,
+			);
+			sourceTree = "<group>";
+		};
+		FBDC4F23F93125BBEEAE800C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				38A007151ABE87CC01A5B6E9 /* SailPunchlist.app */,
+				B1B090E40DE028FCE3BECF85 /* SailPunchlistTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0E8A3AD980EC179856012B7E /* SailPunchlist */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 976B52545947CA66FD9EF2A4 /* Build configuration list for PBXNativeTarget "SailPunchlist" */;
+			buildPhases = (
+				BCE16DD0260827ECF338C787 /* Sources */,
+				7561BFB015D8F536760CB671 /* Frameworks */,
+				0189424A5A60FED329FA868E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SailPunchlist;
+			productName = SailPunchlist;
+			productReference = 38A007151ABE87CC01A5B6E9 /* SailPunchlist.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BC4F65C3573B0A19B37DB040 /* SailPunchlistTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCB701A8EEC1EBEB24F852CA /* Build configuration list for PBXNativeTarget "SailPunchlistTests" */;
+			buildPhases = (
+				F7A6AF8829F5DDB95F10DE9F /* Sources */,
+				0F5A83550E78895DBF374A9C /* Frameworks */,
+				2A615B568CE3B1F1F709137A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A78CA7686B2990C88B6605BE /* PBXTargetDependency */,
+			);
+			name = SailPunchlistTests;
+			productName = SailPunchlistTests;
+			productReference = B1B090E40DE028FCE3BECF85 /* SailPunchlistTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		98F54143AB4E86B28C3AFEE0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 2660;
+			};
+			buildConfigurationList = 640DC9EFD529235A8D9E2727 /* Build configuration list for PBXProject "SailPunchlist" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DC76E9F0C0006E8F919E0C51;
+			productRefGroup = FBDC4F23F93125BBEEAE800C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0E8A3AD980EC179856012B7E /* SailPunchlist */,
+				BC4F65C3573B0A19B37DB040 /* SailPunchlistTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0189424A5A60FED329FA868E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF44B136F0C039E1F18896B4 /* checklists.json in Resources */,
+				F0C3048B9C4C204F3473B058 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A615B568CE3B1F1F709137A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BCE16DD0260827ECF338C787 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B4F90397EFEB7D6B1B0D81F /* main.m in Sources */,
+				E3BFAC23740011E87FFBDDA6 /* SailStore.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7A6AF8829F5DDB95F10DE9F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33CB724180988FF5E47C2502 /* FuelGaugeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A78CA7686B2990C88B6605BE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SailPunchlist;
+			target = 0E8A3AD980EC179856012B7E /* SailPunchlist */;
+			targetProxy = 588F01C2136A1D3B0C9F5BED /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		00F209874A1F7309F6DCEAA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		1A6EFC2CD0AF63DD14BE0438 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 92X2Q2GS25;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				INFOPLIST_FILE = SailPunchlist/Info.plist;
+				OTHER_LDFLAGS = (
+					"-framework",
+					UIKit,
+					"-framework",
+					Foundation,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sailpunchlist.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4D8F54E7CBAF670D9F6C230D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 92X2Q2GS25;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = SailPunchlist/Info.plist;
+				OTHER_LDFLAGS = (
+					"-framework",
+					UIKit,
+					"-framework",
+					Foundation,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sailpunchlist.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DA4D6487F7AC866673780008 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 92X2Q2GS25;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sailpunchlist.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SailPunchlist.app/SailPunchlist";
+			};
+			name = Debug;
+		};
+		ED8772ADEC3A6C25161BC957 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		FC9F272D120705E35B774EB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 92X2Q2GS25;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sailpunchlist.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SailPunchlist.app/SailPunchlist";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		640DC9EFD529235A8D9E2727 /* Build configuration list for PBXProject "SailPunchlist" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED8772ADEC3A6C25161BC957 /* Debug */,
+				00F209874A1F7309F6DCEAA7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		976B52545947CA66FD9EF2A4 /* Build configuration list for PBXNativeTarget "SailPunchlist" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4D8F54E7CBAF670D9F6C230D /* Debug */,
+				1A6EFC2CD0AF63DD14BE0438 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCB701A8EEC1EBEB24F852CA /* Build configuration list for PBXNativeTarget "SailPunchlistTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC9F272D120705E35B774EB9 /* Release */,
+				DA4D6487F7AC866673780008 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 98F54143AB4E86B28C3AFEE0 /* Project object */;
+}
