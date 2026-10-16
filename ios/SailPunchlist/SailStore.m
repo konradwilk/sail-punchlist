@@ -7,7 +7,7 @@ static BOOL Fail(NSError **error, NSString *message) {
     return NO;
 }
 static NSMutableDictionary *Draft(NSString *hours) {
-    return [@{@"answers":[NSMutableDictionary new], @"fuel":@"", @"hours":hours} mutableCopy];
+    return [@{@"answers":[NSMutableDictionary new], @"fuel":@"50", @"hours":hours} mutableCopy];
 }
 static BOOL Number(NSString *text, double *value) {
     if (![text isKindOfClass:NSString.class] || !text.length) return NO;
@@ -63,6 +63,10 @@ static NSString *CSVRow(NSArray *values) {
         _state = [@{@"version":@1, @"phase":@"pre", @"lastHours":NSNull.null,
                     @"drafts":[@{@"pre":Draft(@""), @"post":Draft(@"")} mutableCopy], @"records":[NSMutableArray new]} mutableCopy];
     }
+    // Only supply a default for an unset draft; reopening never consumes fuel.
+    NSArray *records = self.state[@"records"];
+    NSString *fuel = records.count ? [@(MAX(0,[records.lastObject[@"fuel"] doubleValue]-1)) stringValue] : @"50";
+    for (NSString *phase in @[@"pre",@"post"]) if (![self.state[@"drafts"][phase][@"fuel"] length]) self.state[@"drafts"][phase][@"fuel"] = fuel;
     return self;
 }
 - (NSMutableDictionary *)draft { return self.state[@"drafts"][self.state[@"phase"]]; }
@@ -97,12 +101,13 @@ static NSString *CSVRow(NSArray *values) {
     if (!previous) return NO;
     NSString *date = [[NSISO8601DateFormatter new] stringFromDate:NSDate.date];
     [self.state[@"records"] addObject:@{@"phase":phase, @"date":date, @"fuel":@(fuel), @"hours":@(hours), @"items":items}];
-    id last = self.state[@"lastHours"];
-    NSString *previousSuggestion = last == NSNull.null ? @"" : [@([last doubleValue] + 1) stringValue];
     self.state[@"lastHours"] = @(hours);
     self.state[@"drafts"][phase] = Draft([@(hours + 1) stringValue]);
     NSString *next = [phase isEqual:@"pre"] ? @"post" : @"pre";
-    if (![self.state[@"drafts"][next][@"hours"] length] || [self.state[@"drafts"][next][@"hours"] isEqual:previousSuggestion]) self.state[@"drafts"][next][@"hours"] = [@(hours + 1) stringValue];
+    self.state[@"drafts"][next][@"hours"] = [@(hours + 1) stringValue];
+    NSString *nextFuel = [@(MAX(0,fuel-1)) stringValue];
+    self.state[@"drafts"][phase][@"fuel"] = nextFuel;
+    self.state[@"drafts"][next][@"fuel"] = nextFuel;
     self.state[@"phase"] = next;
     if ([self save:error]) return YES;
     _state = [NSJSONSerialization JSONObjectWithData:previous options:NSJSONReadingMutableContainers error:NULL];

@@ -14,8 +14,12 @@ content packaged by each platform's build.
 Review every item with green Done or red Issue controls. Issues can have an optional note and do not
 block completion. Drag directly on the 0–100% fuel dial and enter engine hours, then complete the
 checklist to save a record and switch phases. Each phase has its own saved draft.
+Fuel starts at 50% on first launch. After completion, the next checklist defaults
+to one percentage point below the saved reading, with a minimum of 0%. Reopening
+an unfinished checklist keeps its current fuel reading.
 Engine hours accept decimals and cannot go below the last completed reading.
-The next suggested reading is the last reading + 1.
+Each new checklist starts at the last completed reading + 1 hour. Reopening an
+unfinished checklist keeps any engine reading you have entered.
 
 History shows completion time, fuel, engine hours, and issue notes. Export JSON or CSV
 from History to save a copy. CSV export contains one row per completed checklist

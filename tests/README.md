@@ -3,7 +3,7 @@
 `./tests/run-ios.sh` compiles and runs the actual Objective-C store on macOS.
 It covers required answers, optional issue notes, CSV headers and escaping of commas, quotes, and newlines, fuel bounds, invalid engine
 readings, decimal readings, monotonic engine readings, draft persistence,
-automatic suggested hours, history snapshots, failed-save rollback, and refusing
+50% initial fuel, fuel defaults one percentage point below the last completion with a zero floor, sticky fuel and engine drafts across reloads, engine defaults at the last completion + 1 hour, history snapshots, failed-save rollback, and refusing
 to overwrite unreadable data. It creates and removes its own temporary data.
 
 In Xcode, Product → Test runs `SailPunchlistTests`. These tests invoke the

@@ -14,6 +14,15 @@ class SailStore(directory: File, val lists: JSONObject) {
     } else JSONObject().put("version", 1).put("phase", "pre").put("lastHours", JSONObject.NULL)
         .put("drafts", JSONObject().put("pre", emptyDraft()).put("post", emptyDraft())).put("records", JSONArray())
         private set
+    init {
+        // Reopening keeps the draft reading; only an unset reading needs a default.
+        val records = state.getJSONArray("records")
+        val fuel = if (records.length() == 0) "50" else (records.getJSONObject(records.length()-1).getDouble("fuel")-1).coerceAtLeast(0.0).toString()
+        for (phase in listOf("pre","post")) {
+            val draft = state.getJSONObject("drafts").getJSONObject(phase)
+            if (draft.getString("fuel").isBlank()) draft.put("fuel",fuel)
+        }
+    }
     val phase: String get() = state.getString("phase")
     val draft: JSONObject get() = state.getJSONObject("drafts").getJSONObject(phase)
     val records: JSONArray get() = state.getJSONArray("records")
@@ -49,12 +58,14 @@ class SailStore(directory: File, val lists: JSONObject) {
         val previous = state.toString()
         try {
             records.put(JSONObject().put("phase", phase).put("date", Instant.now().toString()).put("fuel", fuel).put("hours", hours).put("items", items))
-            val previousSuggestion = if (state.isNull("lastHours")) "" else (state.getDouble("lastHours") + 1).toString()
             state.put("lastHours", hours)
             val next = if (phase == "pre") "post" else "pre"
             state.getJSONObject("drafts").put(phase, emptyDraft((hours + 1).toString()))
             val nextDraft = state.getJSONObject("drafts").getJSONObject(next)
-            if (nextDraft.getString("hours").isBlank() || nextDraft.getString("hours") == previousSuggestion) nextDraft.put("hours", (hours + 1).toString())
+            nextDraft.put("hours", (hours + 1).toString())
+            val nextFuel = (fuel-1).coerceAtLeast(0.0).toString()
+            state.getJSONObject("drafts").getJSONObject(phase).put("fuel",nextFuel)
+            nextDraft.put("fuel",nextFuel)
             state.put("phase", next)
             save()
         } catch (e: Exception) { state = JSONObject(previous); throw e }
@@ -82,7 +93,7 @@ class SailStore(directory: File, val lists: JSONObject) {
         }
     }
     companion object {
-        private fun emptyDraft(hours: String = "") = JSONObject().put("answers", JSONObject()).put("fuel", "").put("hours", hours)
+        private fun emptyDraft(hours: String = "") = JSONObject().put("answers", JSONObject()).put("fuel", "50").put("hours", hours)
     }
 }
 fun JSONArray.objects(): List<JSONObject> = (0 until length()).map { getJSONObject(it) }

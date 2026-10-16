@@ -14,10 +14,18 @@ int main(int argc, const char *argv[]) {
         NSError *error = nil;
         SailStore *store = [[SailStore alloc] initWithDirectory:directory checklist:checklist error:&error];
         CHECK(store && !error && [store.state[@"phase"] isEqual:@"pre"]);
+        CHECK([store.draft[@"fuel"] isEqual:@"50"]);
+        CHECK([store.state[@"drafts"][@"post"][@"fuel"] isEqual:@"50"]);
+        store.draft[@"fuel"] = @"72"; store.draft[@"hours"] = @"11.25";
+        CHECK([store save:&error]);
+        SailStore *sticky = [[SailStore alloc] initWithDirectory:directory checklist:checklist error:&error];
+        CHECK([sticky.draft[@"hours"] isEqual:@"11.25"]);
+        CHECK([sticky.draft[@"fuel"] isEqual:@"72"]); // Reopening does not decrement a draft.
         CHECK([[store csv] componentsSeparatedByString:@"\r\n"].count == 2); // Empty history exports a header.
         CHECK(![store complete:&error]); // Unreviewed items cannot be completed.
         AnswerAll(store);
-        CHECK(![store complete:&error]); // Fuel is required.
+        store.draft[@"fuel"] = @"";
+        CHECK(![store complete:&error]); // Invalid empty readings are still refused.
         store.draft[@"fuel"] = @"101"; store.draft[@"hours"] = @"12.5";
         CHECK(![store complete:&error]);
         store.draft[@"fuel"] = @"0"; store.draft[@"hours"] = @"12x";
@@ -32,7 +40,8 @@ int main(int argc, const char *argv[]) {
         CHECK([reloaded.draft[@"answers"][@"pre-0"][@"note"] isEqual:@"Need water"]);
         CHECK([store complete:&error]); // Issues do not block completion.
         CHECK([store.state[@"phase"] isEqual:@"post"]);
-        CHECK([store.draft[@"hours"] isEqual:@"20"]); // Keep an edited reading.
+        CHECK([store.draft[@"fuel"] isEqual:@"0"]); // Fuel stays at zero instead of becoming negative.
+        CHECK([store.draft[@"hours"] doubleValue] == 13.5); // New checklist starts at last completed reading + 1.
         CHECK([store.state[@"records"] count] == 1);
         NSDictionary *record = store.state[@"records"][0];
         CHECK([record[@"fuel"] isEqual:@0] && [record[@"hours"] isEqual:@12.5]);
@@ -50,6 +59,7 @@ int main(int argc, const char *argv[]) {
         CHECK([store.state[@"records"] count] == 2 && [store.draft[@"hours"] isEqual:@"14.75"]);
         reloaded = [[SailStore alloc] initWithDirectory:directory checklist:checklist error:&error];
         CHECK([reloaded.state[@"records"] count] == 2);
+        CHECK([reloaded.draft[@"fuel"] doubleValue] == 49); // 50% completed means a 49% next default.
         AnswerAll(store); store.draft[@"fuel"] = @"75"; store.draft[@"hours"] = @"15";
         // A path occupied by a directory forces an actual disk write error.
         CHECK([NSFileManager.defaultManager removeItemAtURL:store.file error:NULL]);
@@ -59,6 +69,10 @@ int main(int argc, const char *argv[]) {
         CHECK([NSFileManager.defaultManager removeItemAtURL:store.file error:NULL]);
         CHECK([store complete:&error]);
         CHECK([store.state[@"records"] count] == 3);
+        CHECK([store.draft[@"fuel"] doubleValue] == 74); // 75% completed means a 74% next default.
+        sticky = [[SailStore alloc] initWithDirectory:directory checklist:checklist error:&error];
+        CHECK([sticky.draft[@"hours"] doubleValue] == 16); // Last engine reading was 15.
+        CHECK([sticky.draft[@"fuel"] doubleValue] == 74); // The saved default remains sticky on reopen.
         // Malformed data must never silently become an empty log.
         CHECK([@"{broken" writeToURL:store.file atomically:YES encoding:NSUTF8StringEncoding error:NULL]);
         CHECK(![[SailStore alloc] initWithDirectory:directory checklist:checklist error:&error]);
