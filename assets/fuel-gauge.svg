@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: CC0-1.0
+     Original Sail Punchlist artwork. Public-domain dedication: ../licenses/CC0-1.0.txt.
+     Static 70% preview of the dynamic artwork in ../src/FuelGauge.tsx. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="165" viewBox="0 0 300 165" role="img" aria-labelledby="title desc">
+  <title id="title">Sail Punchlist fuel gauge</title>
+  <desc id="desc">Semicircular fuel gauge displaying 70 percent, with empty, quarter, half, three-quarter, and full markings.</desc>
+  <path d="M 35 140 A 115 115 0 0 1 265 140" fill="none" stroke="#e2e9e7" stroke-width="20"/>
+  <path d="M 35 140 A 115 115 0 0 1 57 72" fill="none" stroke="#e7a36a" stroke-width="20"/>
+  <g text-anchor="middle" font-family="sans-serif" font-size="12" fill="#58706b">
+    <text x="56" y="145">E</text>
+    <text x="83.532" y="78.532">0.25</text>
+    <text x="150" y="51">0.5</text>
+    <text x="216.468" y="78.532">0.75</text>
+    <text x="244" y="145">F</text>
+  </g>
+  <line x1="150" y1="140" x2="197.023" y2="75.279" stroke="#0f6256" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="150" cy="140" r="8" fill="#0f6256"/>
+</svg>

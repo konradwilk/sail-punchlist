@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "Sail Punchlist",
+    "slug": "sail-punchlist",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.sailpunchlist.app",
+      "infoPlist": {
+        "UIFileSharingEnabled": true,
+        "LSSupportsOpeningDocumentsInPlace": true
+      },
+      "usesAppleSignIn": true
+    },
+    "android": {
+      "package": "com.sailpunchlist.app"
+    },
+    "plugins": [
+      "expo-apple-authentication",
+      "expo-secure-store",
+      "@react-native-google-signin/google-signin"
+    ]
+  }
+}
